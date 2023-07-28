@@ -1,0 +1,55 @@
+create table cliente(
+    id int auto_increment primary key,
+    nome varchar(50) not null,
+    cognome varchar(50) not null,
+    telefono int not null,
+    indirizzo varchar(100) not null,
+    email varchar(100) unique not null
+);
+
+create table rider(
+    id int auto_increment primary key,
+    nome varchar(50) not null,
+    cognome varchar(50) not null,
+    telefono int not null,
+    email varchar(100) unique not null
+);
+
+create table login(
+    id int auto_increment primary key,
+    email varchar(100) unique not null,
+    pass_word varchar(100) not null,
+    tipo_utente enum('cliente', 'rider'),
+    foreign key(email) references rider(email),
+    foreign key(email) references cliente(email)
+);
+
+create table locale(
+    id int auto_increment primary key,
+    nome varchar(50) not null,
+    indirizzo varchar(50) not null,
+    telefono int not null
+);
+
+create table piatti(
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    prezzo decimal not null,
+    id_locale int not null,
+    foreign key(id_locale) references locale(id)
+);
+
+create table ordine(
+    id int auto_increment primary key,
+    prodotti json not null,
+    stato enum('ritirato', 'da ritirare', 'consegnato'),
+    totale int not null,
+    data_ordine date not null,
+    id_locale int not null,
+    id_rider int not null,
+    id_cliente int not null,
+    foreign key (id_locale) references locale(id),
+    foreign key (id_rider) references rider(id),
+    foreign key (id_cliente) references cliente(id)
+);
+
