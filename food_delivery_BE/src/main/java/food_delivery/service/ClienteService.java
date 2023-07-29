@@ -6,6 +6,8 @@ import food_delivery.mapper.ClienteMapper;
 import food_delivery.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,12 +20,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<ClienteDTO> getAllClienti(){
-        List<ClienteDTO> clientiDTO = new ArrayList<>();
-        clienteRepository.findAll().forEach(x ->
-            clientiDTO.add(ClienteMapper.CLIENTE_MAPPER.entityToDto(x)));
-        if(!clientiDTO.isEmpty()) return clientiDTO;
-        else throw new NullPointerException("get failed");
+    public List<ClienteEntity> getAllClienti(){
+        return clienteRepository.findAll();
     }
 
     public ClienteDTO getCLienteById(Long id){
@@ -32,14 +30,23 @@ public class ClienteService {
         else return ClienteMapper.CLIENTE_MAPPER.entityToDto(clienteFound.get());
     }
 
-    public ClienteEntity saveCliente(ClienteDTO clienteDTO){
+    public ClienteDTO saveCliente(ClienteDTO clienteDTO){
         if(clienteDTO == null) throw new NullPointerException("save failed");
-        ClienteEntity clienteEntity = ClienteMapper.CLIENTE_MAPPER.dtoToEntity(clienteDTO);
-        return clienteRepository.save(clienteEntity);
+        ClienteEntity clienteToSave = ClienteMapper.CLIENTE_MAPPER.dtoToEntity(clienteDTO);
+        return ClienteMapper.CLIENTE_MAPPER.entityToDto(clienteRepository.save(clienteToSave));
     }
 
     public void deleteClienteById(Long id){
+        Optional<ClienteEntity> clienteToDelete = clienteRepository.findById(id);
+        if(clienteToDelete.isEmpty()) throw new NullPointerException("delete failed");
         clienteRepository.deleteById(id);
+    }
+
+    public ClienteDTO updateClienteById( ClienteDTO clienteDTO, Long id){
+        if(clienteRepository.findById(id).isEmpty()) throw new NullPointerException("update failed");
+        ClienteEntity clienteToUpdate = ClienteMapper.CLIENTE_MAPPER.dtoToEntity(clienteDTO);
+        clienteToUpdate.setId(id);
+        return ClienteMapper.CLIENTE_MAPPER.entityToDto(clienteRepository.save(clienteToUpdate));
     }
 
 

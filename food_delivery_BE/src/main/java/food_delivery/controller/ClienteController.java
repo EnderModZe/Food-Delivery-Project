@@ -15,7 +15,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("/get-all")
-    public List<ClienteDTO> getAllClienti(){
+    public List<ClienteEntity> getAllClienti(){
         return clienteService.getAllClienti();
     }
 
@@ -25,12 +25,17 @@ public class ClienteController {
     }
 
     @PostMapping("/save")
-    public ClienteEntity saveCliente(@RequestBody ClienteDTO clienteDTO){
+    public ClienteDTO saveCliente(@RequestBody ClienteDTO clienteDTO){
         return clienteService.saveCliente(clienteDTO);
     }
 
-    @DeleteMapping("/delete-{id}")
+    @DeleteMapping("/delete-by-{id}")
     public void deleteClienteById(@PathVariable Long id){
         clienteService.deleteClienteById(id);
+    }
+
+    @PutMapping("update-by-{id}")
+    public ClienteDTO updateClienteById(@RequestBody ClienteDTO clienteDTO, @PathVariable Long id){
+        return clienteService.updateClienteById(clienteDTO, id);
     }
 }

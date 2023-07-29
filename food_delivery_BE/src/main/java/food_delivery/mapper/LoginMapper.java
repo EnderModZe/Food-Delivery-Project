@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface LoginMapper {
     LoginMapper LOGIN_MAPPER = Mappers.getMapper(LoginMapper.class);
-
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
     @Mapping(source = "tipoUtente", target = "tipoUtente")
@@ -17,6 +17,7 @@ public interface LoginMapper {
     @Mapping(source = "cliente", target = "cliente")
     LoginDTO entityToDto(LoginEntity loginEntity);
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
     @Mapping(source = "tipoUtente", target = "tipoUtente")

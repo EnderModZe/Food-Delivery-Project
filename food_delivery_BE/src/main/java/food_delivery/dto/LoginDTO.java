@@ -15,9 +15,10 @@ import lombok.*;
 @Setter
 @ToString
 public class LoginDTO {
+    private Long id;
     private String email;
     private String password;
-    private LoginEntity.TipoUtente tipoUtente;
+    private String tipoUtente;
     private RiderEntity rider;
     private ClienteEntity cliente;
 }

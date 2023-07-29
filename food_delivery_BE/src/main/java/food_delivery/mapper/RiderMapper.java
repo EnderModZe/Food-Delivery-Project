@@ -15,6 +15,7 @@ public interface RiderMapper {
     @Mapping(source = "nome", target = "nome")
     @Mapping(source = "cognome", target = "cognome")
     @Mapping(source = "telefono", target = "telefono")
+    @Mapping(source = "email", target = "email")
     @Mapping(source = "login", target = "login")
     @Mapping(source = "ordini", target = "ordini")
     RiderDTO entityToDto(RiderEntity riderEntity);
@@ -23,6 +24,7 @@ public interface RiderMapper {
     @Mapping(source = "nome", target = "nome")
     @Mapping(source = "cognome", target = "cognome")
     @Mapping(source = "telefono", target = "telefono")
+    @Mapping(source = "email", target = "email")
     @Mapping(source = "login", target = "login")
     @Mapping(source = "ordini", target = "ordini")
     RiderEntity dtoToEntity(RiderDTO riderDto);

@@ -15,7 +15,7 @@ import lombok.*;
 public class OrdineDTO {
     private Long id;
     private String prodotti;
-    private OrdineEntity.StatoOrdine statoOrdine;
+    private String statoOrdine;
     private Double totale;
     private String dataOrdine;
     private LocaleEntity locale;

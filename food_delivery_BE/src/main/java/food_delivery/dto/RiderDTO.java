@@ -15,7 +15,8 @@ public class RiderDTO {
     private Long id;
     private String nome;
     private String cognome;
-    private Integer telefono;
+    private String telefono;
+    private String email;
     private LoginEntity login;
     private Set<OrdineEntity> ordini;
 }

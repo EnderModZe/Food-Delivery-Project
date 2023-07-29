@@ -24,7 +24,7 @@ public class RiderEntity {
     private String cognome;
 
     @Column(name = "telefono")
-    private Integer telefono;
+    private String telefono;
 
     @Column(name = "email")
     private String email;

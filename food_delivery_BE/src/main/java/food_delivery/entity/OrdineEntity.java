@@ -10,11 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 public class OrdineEntity {
-    public enum StatoOrdine{
-        RITIRATO,
-        DA_RITIRARE,
-        CONSEGNATO
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +20,7 @@ public class OrdineEntity {
     private String prodotti;
 
     @Column(name = "stato")
-    private StatoOrdine statoOrdine;
+    private String statoOrdine;
 
     @Column(name = "totale")
     private Double totale;

@@ -1,5 +1,6 @@
 package food_delivery.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,10 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 public class LoginEntity {
-    public enum TipoUtente{
-        CLIENTE,
-        RIDER
-    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,13 +24,15 @@ public class LoginEntity {
     private String password;
 
     @Column(name = "tipo_utente")
-    private TipoUtente tipoUtente;
+    private String tipoUtente;
 
     @OneToOne
     @JoinColumn(name = "email", referencedColumnName = "email", insertable=false, updatable=false)
+    @JsonIgnore
     private RiderEntity rider;
 
     @OneToOne
     @JoinColumn(name = "email", referencedColumnName = "email", insertable=false, updatable=false)
+    @JsonIgnore
     private ClienteEntity cliente;
 }
