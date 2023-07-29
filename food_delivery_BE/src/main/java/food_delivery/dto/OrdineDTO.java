@@ -18,6 +18,7 @@ public class OrdineDTO {
     private String statoOrdine;
     private Double totale;
     private String dataOrdine;
+    private String tipoPagamento;
     private LocaleEntity locale;
     private RiderEntity rider;
     private ClienteEntity cliente;

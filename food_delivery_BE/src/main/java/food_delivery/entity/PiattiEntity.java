@@ -1,5 +1,6 @@
 package food_delivery.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,6 @@ public class PiattiEntity {
 
     @ManyToOne(targetEntity = LocaleEntity.class)
     @JoinColumn(name = "id_locale")
+    @JsonIgnore
     private LocaleEntity locale;
 }

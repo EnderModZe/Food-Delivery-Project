@@ -28,6 +28,9 @@ public class OrdineEntity {
     @Column(name = "data_ordine")
     private String dataOrdine;
 
+    @Column(name = "tipo_pagamento")
+    private String tipoPagamento;
+
     @ManyToOne()
     @JoinColumn(name = "id_locale")
     private LocaleEntity locale;

@@ -25,7 +25,7 @@ public class LocaleEntity {
     private String indirizzo;
 
     @Column(name = "telefono")
-    private Integer telefono;
+    private String telefono;
 
     @OneToMany(mappedBy = "locale")
     private List<PiattiEntity> piatti;

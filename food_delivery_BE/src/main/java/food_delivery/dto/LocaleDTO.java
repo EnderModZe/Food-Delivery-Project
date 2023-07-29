@@ -17,7 +17,7 @@ public class LocaleDTO {
     private Long id;
     private String nome;
     private String indirizzo;
-    private Integer telefono;
+    private String telefono;
     private List<PiattiEntity> piatti;
     private Set<OrdineEntity> ordini;
 }
